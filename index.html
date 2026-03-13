@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle - Maturação de Chips</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Controle de Chips</h1>
+        
+        <!-- Painel de Chips -->
+        <div class="chips-panel">
+            <div class="chip">
+                <h2>WhatsApp 1</h2>
+                <p>Status: <span id="status-chip-1">Ativo</span></p>
+                <button onclick="toggleStatus('chip-1')">Pausar</button>
+                <button onclick="setInterval('chip-1')">Definir Intervalo</button>
+            </div>
+
+            <div class="chip">
+                <h2>WhatsApp 2</h2>
+                <p>Status: <span id="status-chip-2">Ativo</span></p>
+                <button onclick="toggleStatus('chip-2')">Pausar</button>
+                <button onclick="setInterval('chip-2')">Definir Intervalo</button>
+            </div>
+
+            <div class="chip">
+                <h2>WhatsApp 3</h2>
+                <p>Status: <span id="status-chip-3">Em Pausa</span></p>
+                <button onclick="toggleStatus('chip-3')">Retomar</button>
+                <button onclick="setInterval('chip-3')">Definir Intervalo</button>
+            </div>
+        </div>
+        
+        <!-- Gráfico de Maturação -->
+        <div class="maturation-chart">
+            <h2>Gráfico de Maturação</h2>
+            <div id="chart"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
