@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Instâncias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Menu Lateral (Do Disparei) -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="disparei-logo.png" alt="Disparei Logo" />
+      <p>DISPAREI</p>
+    </div>
+    <ul class="menu">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Chat</a></li>
+      <li><a href="#">Agentes IA</a></li>
+      <li><a href="#">CRM</a></li>
+      <li><a href="#">Conexões</a></li>
+      <li><a href="#">Disparos Individuais</a></li>
+      <li><a href="#">Disparos Grupos</a></li>
+      <li><a href="#">Histórico de disparos</a></li>
+      <li><a href="#">Listas</a></li>
+      <li><a href="#">Suporte</a></li>
+      <li><a href="#">Configurações</a></li>
+      <li><a href="#">Sair</a></li>
+    </ul>
+    <div class="footer">
+      <label>Modo Escuro</label>
+      <input type="checkbox" id="dark-mode-toggle" />
+    </div>
+  </aside>
+
+  <!-- Área Principal -->
+  <main class="main-content">
+    <header>
+      <div class="user-info">
+        <img src="profile-icon.png" alt="Ícone de usuário" />
+        <span>fyamasouza21@gmail.com</span>
+        <span>FYAMA BENTO SOUZA</span>
+      </div>
+      <div class="user-actions">
+        <button>Redefinir Senha</button>
+        <button>Sair</button>
+      </div>
+    </header>
+
+    <!-- Informações do Plano -->
+    <section class="plan-info">
+      <p>Plano 10 instâncias</p>
+      <p>Seu plano vence em 27 dias</p>
+      <div class="status">
+        <span>Conectadas: 3</span>
+        <span>Desconectadas: 0</span>
+      </div>
+      <button>Zerar Contadores</button>
+    </section>
+
+    <!-- Cards das Instâncias de Chips -->
+    <section class="chips">
+      <div class="chip-card">
+        <h3>CHIP 08</h3>
+        <p>Conectado - 5511939021116</p>
+        <p>84 mensagens enviadas (3.4%)</p>
+        <div class="actions">
+          <button>Aquec. Privado</button>
+          <button>Aquec. Grupos</button>
+          <button>Postar Status</button>
+          <button>Empresas Verificadas</button>
+          <button>Entrar nos Grupos</button>
+        </div>
+      </div>
+      <!-- Repetir os cards para outros chips -->
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
