@@ -1,20 +1,25 @@
 /* Estilos gerais */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
+  background: linear-gradient(135deg, #6A4C9C, #FFD700); /* Gradiente de roxo para dourado */
+  height: 100vh;
+  color: white;
 }
 
 /* Menu Lateral */
 .sidebar {
-  width: 250px;
-  background-color: #6A4C9C; /* Roxo */
+  width: 260px;
+  background-color: #4A3C6C; /* Roxo escuro */
   color: white;
   padding: 20px;
   height: 100vh;
   position: fixed;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
+  border-radius: 10px;
 }
 
 .sidebar:hover {
@@ -24,7 +29,7 @@ body {
 .sidebar .logo {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-size: 22px;
   color: #FFD700; /* Dourado */
 }
@@ -50,6 +55,7 @@ body {
   text-decoration: none;
   font-size: 18px;
   padding: 8px 0;
+  font-weight: 500;
 }
 
 .sidebar .menu li a:hover {
@@ -64,16 +70,18 @@ body {
 }
 
 #dark-mode-toggle:checked + .sidebar {
-  background-color: #4C3C6C; /* Tom mais escuro de roxo para o modo escuro */
+  background-color: #3A2C54; /* Tom mais escuro de roxo */
 }
 
 /* Área Principal */
 .main-content {
-  margin-left: 250px;
-  padding: 20px;
-  background-color: #4A3C6C; /* Roxo suave */
+  margin-left: 260px;
+  padding: 30px;
+  background-color: #2C3E50; /* Roxo suave */
   color: white;
   height: 100vh;
+  overflow-y: auto;
+  border-radius: 10px;
 }
 
 header {
@@ -81,7 +89,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: #6A4C9C;
-  padding: 15px 20px;
+  padding: 15px 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -89,19 +97,23 @@ header {
 header .user-info span {
   font-size: 18px;
   margin-left: 10px;
+  font-weight: 600;
 }
 
 header .user-actions button {
   background-color: #FFD700; /* Dourado */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
 header .user-actions button:hover {
   background-color: #F1C40F; /* Dourado mais claro */
+  transform: scale(1.05); /* Efeito de zoom */
 }
 
 /* Cards de Instâncias de Chips */
@@ -114,10 +126,11 @@ header .user-actions button:hover {
 
 .chip-card {
   background-color: #6A4C9C;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .chip-card:hover {
@@ -128,27 +141,33 @@ button {
   background-color: #FFD700;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   cursor: pointer;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #F1C40F;
+  transform: scale(1.05); /* Efeito de zoom */
 }
 
-/* Estilo para os gráficos (Exemplo para um gráfico de barra) */
+/* Gráficos no Dashboard */
 .graph {
-  background-color: #5A4A7E; /* Roxo mais suave para gráficos */
-  padding: 20px;
+  background-color: #5A4A7E; /* Roxo mais suave */
+  padding: 25px;
   margin-top: 20px;
   border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .graph h3 {
   color: #FFD700;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
 .graph .chart-container {
@@ -157,11 +176,3 @@ button:hover {
   background-color: #4A3C6C;
   border-radius: 8px;
 }
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestão de Instâncias</title>
-  <!-- Link para as fontes do Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
