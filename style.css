@@ -29,7 +29,7 @@ body {
 .sidebar .logo h1 {
   font-family: 'Poppins', sans-serif;
   color: #FFD700; /* Dourado */
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
   text-align: center;
 }
@@ -51,6 +51,7 @@ body {
   font-size: 18px;
   padding: 8px 0;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .sidebar .menu li a:hover {
@@ -62,6 +63,7 @@ body {
   margin-top: auto;
   text-align: center;
   color: #FFD700;
+  margin-bottom: 10px;
 }
 
 /* Área Principal */
@@ -99,11 +101,49 @@ header .user-actions button {
   cursor: pointer;
   border-radius: 10px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 header .user-actions button:hover {
   background-color: #F1C40F; /* Dourado mais claro */
+  transform: scale(1.05); /* Efeito de zoom */
+}
+
+/* Informações do Plano */
+.plan-info {
+  background-color: #5A4A7E; /* Roxo mais suave */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.plan-info p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.plan-info .status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.plan-info button {
+  background-color: #FFD700;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.plan-info button:hover {
+  background-color: #F1C40F;
   transform: scale(1.05); /* Efeito de zoom */
 }
 
@@ -123,25 +163,38 @@ header .user-actions button:hover {
   transition: transform 0.3s ease;
 }
 
+.chip-card h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.chip-card p {
+  font-size: 16px;
+}
+
 .chip-card:hover {
   transform: scale(1.05); /* Efeito de zoom nos cards */
 }
 
-button {
+.chip-card .actions {
+  margin-top: 20px;
+}
+
+.chip-card .actions button {
   background-color: #FFD700;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
+  margin: 5px;
   cursor: pointer;
-  margin-top: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+.chip-card .actions button:hover {
   background-color: #F1C40F;
-  transform: scale(1.05); /* Efeito de zoom */
+  transform: scale(1.05);
 }
 
 /* Estilo para os gráficos (Exemplo para um gráfico de barra) */
