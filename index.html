@@ -1,83 +1,550 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ametistic Disparos - Gestão de Instâncias</title>
-  <!-- Link para as fontes do Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Link para o CSS -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyForce</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #facc15;
+      letter-spacing: 0.5px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: #e5e7eb;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .menu a:hover {
+      color: #f97316;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #facc15);
+      color: #111827;
+      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .btn-secondary {
+      border: 2px solid #7c3aed;
+      color: #fff;
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: #7c3aed;
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.35), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.28), transparent 25%);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #facc15;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, #1e293b, #0f172a);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-card {
+      background: #111827;
+      border-left: 5px solid #2563eb;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+    }
+
+    .mini-card h4 {
+      color: #facc15;
+      margin-bottom: 6px;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #cbd5e1;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      background: #111827;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.18);
+    }
+
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #facc15;
+    }
+
+    .steps {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .pricing {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      align-items: stretch;
+    }
+
+    .price-card {
+      background: #111827;
+      border-radius: 22px;
+      padding: 32px 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .price-card.featured {
+      border: 2px solid #f97316;
+      transform: scale(1.03);
+      box-shadow: 0 18px 50px rgba(249, 115, 22, 0.22);
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      right: 18px;
+      background: #f97316;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .price-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #facc15;
+    }
+
+    .price {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .price span {
+      font-size: 1rem;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .price-card ul li {
+      margin-bottom: 12px;
+      color: #e5e7eb;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #2563eb, #7c3aed, #f97316);
+      border-radius: 28px;
+      padding: 60px 30px;
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
+    }
+
+    .cta h2 {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      color: #f8fafc;
+    }
+
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .menu {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Menu Lateral -->
-  <aside class="sidebar">
-    <div class="logo">
-      <h1>Ametistic Disparos</h1>
+
+  <header>
+    <div class="container nav">
+      <div class="logo">StudyForce</div>
+      <nav class="menu">
+        <a href="#inicio">Início</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#funciona">Como Funciona</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+        <a href="#" class="btn btn-primary">Começar Agora</a>
+      </nav>
     </div>
-    <ul class="menu">
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Chat</a></li>
-      <li><a href="#">Agentes IA</a></li>
-      <li><a href="#">CRM</a></li>
-      <li><a href="#">Conexões</a></li>
-      <li><a href="#">Disparos Individuais</a></li>
-      <li><a href="#">Disparos Grupos</a></li>
-      <li><a href="#">Histórico de disparos</a></li>
-      <li><a href="#">Listas</a></li>
-      <li><a href="#">Suporte</a></li>
-      <li><a href="#">Configurações</a></li>
-      <li><a href="#">Sair</a></li>
-    </ul>
-    <div class="footer">
-      <label>Modo Escuro</label>
-      <input type="checkbox" id="dark-mode-toggle" />
-    </div>
-  </aside>
+  </header>
 
-  <!-- Área Principal -->
-  <main class="main-content">
-    <header>
-      <div class="user-info">
-        <img src="profile-icon.png" alt="Ícone de usuário" />
-        <span>fyamasouza21@gmail.com</span>
-        <span>FYAMA BENTO SOUZA</span>
-      </div>
-      <div class="user-actions">
-        <button>Redefinir Senha</button>
-        <button>Sair</button>
-      </div>
-    </header>
-
-    <!-- Informações do Plano -->
-    <section class="plan-info">
-      <p>Plano 10 instâncias</p>
-      <p>Seu plano vence em 27 dias</p>
-      <div class="status">
-        <span>Conectadas: 3</span>
-        <span>Desconectadas: 0</span>
-      </div>
-      <button>Zerar Contadores</button>
-    </section>
-
-    <!-- Cards das Instâncias de Chips -->
-    <section class="chips">
-      <div class="chip-card">
-        <h3>CHIP 08</h3>
-        <p>Conectado - 5511939021116</p>
-        <p>84 mensagens enviadas (3.4%)</p>
-        <div class="actions">
-          <button>Aquec. Privado</button>
-          <button>Aquec. Grupos</button>
-          <button>Postar Status</button>
-          <button>Empresas Verificadas</button>
-          <button>Entrar nos Grupos</button>
+  <section class="hero" id="inicio">
+    <div class="container hero-content">
+      <div>
+        <h1>Organize seus estudos com <span>mais foco, estratégia e resultado</span></h1>
+        <p>
+          Uma plataforma moderna para quem quer acompanhar metas, visualizar desempenho
+          e manter uma rotina de estudos forte, prática e eficiente.
+        </p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary">Teste Agora</a>
+          <a href="#recursos" class="btn btn-secondary">Ver Recursos</a>
         </div>
       </div>
-      <!-- Repetir os cards para outros chips -->
-    </section>
-  </main>
 
-  <script src="script.js"></script>
+      <div class="hero-card">
+        <div class="mini-card">
+          <h4>Painel Inteligente</h4>
+          <p>Veja sua evolução em tempo real com gráficos simples e objetivos.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Metas Diárias</h4>
+          <p>Defina metas claras e acompanhe seu progresso sem complicação.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Planejamento Estratégico</h4>
+          <p>Monte sua rotina por matéria, prioridade e tempo disponível.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos">
+    <div class="container">
+      <h2 class="section-title">Recursos que impulsionam sua performance</h2>
+      <p class="section-subtitle">
+        Tudo o que você precisa para estudar melhor, manter constância e enxergar
+        sua evolução com clareza.
+      </p>
+
+      <div class="grid features-grid">
+        <div class="card">
+          <div class="icon">📊</div>
+          <h3>Painel de desempenho</h3>
+          <p>Acompanhe sua produtividade e visualize seus avanços com facilidade.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🗓️</div>
+          <h3>Cronograma inteligente</h3>
+          <p>Organize seu tempo de forma prática e encaixe seus estudos na rotina.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎯</div>
+          <h3>Metas personalizadas</h3>
+          <p>Crie objetivos diários, semanais e mensais para manter o foco.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📚</div>
+          <h3>Organização por matérias</h3>
+          <p>Separe conteúdos e prioridades para ter mais controle do estudo.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📈</div>
+          <h3>Relatórios visuais</h3>
+          <p>Entenda o que está funcionando e ajuste sua estratégia rapidamente.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Área exclusiva</h3>
+          <p>Ambiente moderno, seguro e pensado para facilitar sua evolução.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funciona">
+    <div class="container">
+      <h2 class="section-title">Como funciona</h2>
+      <p class="section-subtitle">
+        Em poucos passos, você começa a estudar com mais direção, disciplina e clareza.
+      </p>
+
+      <div class="grid steps">
+        <div class="card">
+          <div class="step-number">1</div>
+          <h3>Crie sua conta</h3>
+          <p>Entre na plataforma e configure seu perfil de estudos em poucos minutos.</p>
+        </div>
+
+        <div class="card">
+          <div class="step-number">2</div>
+          <h3>Organize sua rotina</h3>
+          <p>Monte seu plano com matérias, horários, metas e prioridades.</p>
+        </div>
+
+        <div class="card">
+          <div class="step-number">3</div>
+          <h3>Acompanhe sua evolução</h3>
+          <p>Veja o que você concluiu e onde precisa melhorar.</p>
+        </div>
+
+        <div class="card">
+          <div class="step-number">4</div>
+          <h3>Alcance mais resultados</h3>
+          <p>Estude com consistência e tome decisões com base no seu progresso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="planos">
+    <div class="container">
+      <h2 class="section-title">Escolha seu plano</h2>
+      <p class="section-subtitle">
+        Planos pensados para quem quer começar, evoluir e ter uma experiência mais completa.
+      </p>
+
+      <div class="grid pricing">
+        <div class="price-card">
+          <h3>Básico</h3>
+          <div class="price">R$ 19<span>/mês</span></div>
+          <p>Ideal para começar com organização.</p>
+          <ul>
+            <li>✓ Painel básico</li>
+            <li>✓ Metas semanais</li>
+            <li>✓ Organização por matérias</li>
+            <li>✓ Suporte padrão</li>
+          </ul>
+          <a href="#" class="btn btn-secondary">Assinar</a>
+        </div>
+
+        <div class="price-card featured">
+          <div class="badge">Mais escolhido</div>
+          <h3>Pro</h3>
+          <div class="price">R$ 39<span>/mês</span></div>
+          <p>Para quem quer mais controle e performance.</p>
+          <ul>
+            <li>✓ Painel completo</li>
+            <li>✓ Relatórios visuais</li>
+            <li>✓ Metas personalizadas</li>
+            <li>✓ Cronograma inteligente</li>
+            <li>✓ Suporte prioritário</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Assinar Agora</a>
+        </div>
+
+        <div class="price-card">
+          <h3>Premium</h3>
+          <div class="price">R$ 69<span>/mês</span></div>
+          <p>Para quem busca uma experiência mais avançada.</p>
+          <ul>
+            <li>✓ Tudo do plano Pro</li>
+            <li>✓ Recursos exclusivos</li>
+            <li>✓ Área avançada de análise</li>
+            <li>✓ Atendimento diferenciado</li>
+          </ul>
+          <a href="#" class="btn btn-secondary">Quero esse</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta" id="contato">
+        <h2>Chegou a hora de estudar com mais força e direção</h2>
+        <p>
+          Comece hoje a transformar sua rotina com uma plataforma visual, prática
+          e feita para impulsionar seus resultados.
+        </p>
+        <a href="#" class="btn btn-primary">Quero Começar Agora</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 StudyForce — Todos os direitos reservados.
+    </div>
+  </footer>
+
 </body>
 </html>
