@@ -1,735 +1,286 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ChipTurbo - Maturação de Chips para WhatsApp</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZapFlow - Plataforma WhatsApp</title>
+
 <style>
 :root{
---bg:#07111f;
---bg-soft:#0f1d33;
---card:#12213b;
---line:rgba(255,255,255,.08);
---text:#f8fafc;
---muted:#b8c2d3;
---primary:#6d5dfc;
---secondary:#00d4ff;
---accent:#ff7a00;
---success:#19d98c;
---shadow:0 20px 60px rgba(0,0,0,.28);
---radius:22px;
---max:1180px;
+  --bg:#060b16;
+  --card:#0f172a;
+  --primary:#7c3aed;
+  --secondary:#06b6d4;
+  --accent:#f97316;
+  --text:#f8fafc;
+  --muted:#94a3b8;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
-html{scroll-behavior:smooth;}
-body{
-background:
-radial-gradient(circle at top left, rgba(109,93,252,.20), transparent 25%),
-radial-gradient(circle at top right, rgba(0,212,255,.16), transparent 22%),
-radial-gradient(circle at bottom center, rgba(255,122,0,.12), transparent 25%),
-var(--bg);
-color:var(--text);
-line-height:1.6;
-}
-a{text-decoration:none;color:inherit;}
-.container{width:min(92%, var(--max));margin:0 auto;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+body{background:var(--bg);color:var(--text);}
 
-.topbar{
-position:sticky;
-top:0;
-z-index:999;
-backdrop-filter:blur(14px);
-background:rgba(7,17,31,.82);
-border-bottom:1px solid var(--line);
+.container{width:90%;max-width:1200px;margin:auto;}
+
+header{
+  padding:20px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.nav{
-min-height:78px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:24px;
+.logo{
+  font-size:22px;
+  font-weight:800;
+  color:var(--accent);
 }
-
-.brand{
-display:flex;
-align-items:center;
-gap:12px;
-font-weight:800;
-font-size:1.25rem;
-}
-
-.brand-badge{
-width:42px;
-height:42px;
-border-radius:14px;
-display:grid;
-place-items:center;
-background:linear-gradient(135deg, var(--primary), var(--secondary));
-box-shadow:0 10px 30px rgba(109,93,252,.35);
-font-weight:900;
-}
-
-.nav-links{
-display:flex;
-align-items:center;
-gap:22px;
-flex-wrap:wrap;
-}
-
-.nav-links a{
-color:var(--muted);
-font-weight:700;
-transition:.25s;
-}
-
-.nav-links a:hover{color:#fff;}
 
 .btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-padding:14px 22px;
-border-radius:16px;
-font-weight:800;
-border:none;
-cursor:pointer;
-transition:.25s ease;
+  padding:12px 20px;
+  border-radius:12px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
 }
 
-.btn:hover{transform:translateY(-2px);}
 .btn-primary{
-background:linear-gradient(135deg, var(--accent), #ffb000);
-color:#111827;
-box-shadow:0 12px 30px rgba(255,122,0,.28);
+  background:linear-gradient(135deg,var(--accent),#facc15);
+  color:#000;
 }
+
 .btn-outline{
-color:#fff;
-border:1px solid rgba(255,255,255,.18);
-background:rgba(255,255,255,.03);
+  border:1px solid #fff3;
+  background:none;
+  color:#fff;
 }
 
-.hero{padding:76px 0 46px;}
-.hero-grid{
-display:grid;
-grid-template-columns:1.06fr .94fr;
-gap:38px;
-align-items:center;
-}
-
-.eyebrow{
-display:inline-flex;
-align-items:center;
-gap:10px;
-padding:8px 14px;
-border:1px solid rgba(255,255,255,.08);
-border-radius:999px;
-background:rgba(255,255,255,.03);
-color:#dce6f4;
-font-size:.92rem;
-font-weight:700;
-margin-bottom:18px;
-}
-
-.dot{
-width:10px;
-height:10px;
-border-radius:50%;
-background:var(--success);
-box-shadow:0 0 0 6px rgba(25,217,140,.14);
+/* HERO */
+.hero{
+  padding:80px 0;
+  text-align:center;
 }
 
 .hero h1{
-font-size:clamp(2.3rem, 4.6vw, 4.2rem);
-line-height:1.02;
-margin-bottom:18px;
-font-weight:900;
-letter-spacing:-1.2px;
+  font-size:42px;
+  margin-bottom:15px;
 }
 
-.hero h1 span{
-background:linear-gradient(135deg, #fff, var(--secondary), var(--accent));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-background-clip:text;
-color:transparent;
+.hero span{
+  color:var(--accent);
 }
 
 .hero p{
-font-size:1.08rem;
-color:var(--muted);
-max-width:650px;
-margin-bottom:28px;
+  color:var(--muted);
+  margin-bottom:30px;
 }
 
-.hero-actions{
-display:flex;
-gap:14px;
-flex-wrap:wrap;
-margin-bottom:22px;
-}
-
-.hero-mini{
-display:flex;
-gap:18px;
-flex-wrap:wrap;
-color:#d9e3ef;
-font-size:.95rem;
-font-weight:700;
-}
-
-.panel{
-background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-border:1px solid var(--line);
-box-shadow:var(--shadow);
-border-radius:28px;
-padding:22px;
-}
-
-.panel-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px;
-gap:16px;
-}
-
-.panel-title{
-font-size:1.04rem;
-font-weight:800;
-}
-
-.status{
-font-size:.84rem;
-color:#ddfff2;
-background:rgba(25,217,140,.14);
-border:1px solid rgba(25,217,140,.25);
-padding:8px 10px;
-border-radius:999px;
-font-weight:800;
-}
-
-.stat-grid{
-display:grid;
-grid-template-columns:repeat(2, 1fr);
-gap:14px;
-margin-bottom:14px;
-}
-
-.stat{
-background:rgba(7,17,31,.65);
-border:1px solid rgba(255,255,255,.06);
-border-radius:18px;
-padding:18px;
-}
-
-.stat small{
-display:block;
-color:var(--muted);
-font-weight:700;
-margin-bottom:6px;
-}
-
-.stat strong{
-font-size:1.35rem;
-display:block;
-margin-bottom:2px;
-}
-
-section{padding:44px 0;}
-
-.section-head{
-text-align:center;
-margin-bottom:28px;
-}
-
-.section-head h2{
-font-size:clamp(1.8rem, 3vw, 2.8rem);
-line-height:1.1;
-margin-bottom:10px;
-}
-
-.section-head p{
-max-width:720px;
-margin:0 auto;
-color:var(--muted);
+.section{
+  padding:60px 0;
 }
 
 .cards{
-display:grid;
-gap:18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
-
-.features{grid-template-columns:repeat(3, 1fr);}
-.steps{grid-template-columns:repeat(4, 1fr);}
-.pricing{grid-template-columns:repeat(3, 1fr);align-items:stretch;}
 
 .card{
-background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-border:1px solid var(--line);
-border-radius:24px;
-padding:24px;
-box-shadow:var(--shadow);
+  background:var(--card);
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #fff1;
 }
 
-.icon{
-width:54px;
-height:54px;
-border-radius:16px;
-display:grid;
-place-items:center;
-font-size:1.4rem;
-margin-bottom:16px;
-background:linear-gradient(135deg, rgba(109,93,252,.22), rgba(0,212,255,.18));
-border:1px solid rgba(255,255,255,.08);
+/* DASHBOARD */
+.dashboard{
+  display:none;
 }
 
-.card h3{font-size:1.12rem;margin-bottom:8px;}
-.card p{color:var(--muted);font-size:.98rem;}
-
-.step-number{
-width:44px;
-height:44px;
-display:grid;
-place-items:center;
-border-radius:14px;
-background:linear-gradient(135deg, var(--primary), var(--secondary));
-font-weight:900;
-margin-bottom:14px;
-box-shadow:0 12px 30px rgba(109,93,252,.24);
+.sidebar{
+  width:220px;
+  background:#020617;
+  height:100vh;
+  position:fixed;
+  padding:20px;
 }
 
-.price-card{position:relative;}
-.price-card.featured{
-border:2px solid rgba(255,122,0,.55);
-transform:translateY(-4px);
+.sidebar h2{
+  margin-bottom:30px;
 }
 
-.tag{
-position:absolute;
-top:-12px;
-right:18px;
-padding:8px 12px;
-border-radius:999px;
-background:linear-gradient(135deg, var(--accent), #ffb000);
-color:#1b1b1b;
-font-size:.82rem;
-font-weight:900;
+.sidebar button{
+  width:100%;
+  margin-bottom:10px;
 }
 
-.price{
-font-size:2.3rem;
-font-weight:900;
-line-height:1;
-margin:14px 0 12px;
+.main{
+  margin-left:240px;
+  padding:20px;
 }
 
-.price span{
-font-size:1rem;
-color:var(--muted);
-font-weight:700;
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
 }
 
-.price-card ul{
-list-style:none;
-margin:18px 0 22px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
 }
 
-.price-card li{
-margin:10px 0;
-color:#e6edf8;
+.stat{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
 }
 
-.faq{
-display:grid;
-gap:14px;
-max-width:900px;
-margin:0 auto;
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
+  border:none;
+  background:#020617;
+  color:#fff;
 }
 
-.faq-item{
-background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-border:1px solid var(--line);
-border-radius:20px;
-padding:20px;
+textarea{min-height:100px;}
+
+.section-panel{
+  margin-top:20px;
 }
 
-.faq-item h3{
-margin-bottom:8px;
-font-size:1.05rem;
-}
+.hidden{display:none;}
 
-.faq-item p{
-color:var(--muted);
-}
-
-.cta{
-text-align:center;
-padding:54px 22px;
-border-radius:28px;
-border:1px solid rgba(255,255,255,.08);
-background:
-radial-gradient(circle at top left, rgba(109,93,252,.28), transparent 28%),
-radial-gradient(circle at bottom right, rgba(255,122,0,.22), transparent 25%),
-linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-box-shadow:var(--shadow);
-}
-
-.cta h2{
-font-size:clamp(1.9rem, 3vw, 3rem);
-margin-bottom:10px;
-}
-
-.cta p{
-max-width:760px;
-margin:0 auto 22px;
-color:var(--muted);
-}
-
-footer{
-padding:28px 0 40px;
-color:#93a2bb;
-}
-
-.footer-wrap{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-flex-wrap:wrap;
-border-top:1px solid var(--line);
-padding-top:24px;
-}
-
-.footer-links{
-display:flex;
-gap:18px;
-flex-wrap:wrap;
-}
-
-@media (max-width: 1020px){
-.hero-grid,.features,.steps,.pricing{
-grid-template-columns:1fr 1fr;
-}
-}
-
-@media (max-width: 760px){
-.nav{
-flex-direction:column;
-padding:14px 0;
-}
-
-.nav-links{
-justify-content:center;
-}
-
-.hero{
-padding-top:42px;
-}
-
-.hero-grid,.features,.steps,.pricing,.stat-grid{
-grid-template-columns:1fr;
-}
-
-.hero-actions .btn{
-width:100%;
-}
-
-.hero-mini{
-flex-direction:column;
-gap:10px;
-}
-}
 </style>
 </head>
+
 <body>
 
-<header class="topbar">
-<div class="container nav">
-<a href="#inicio" class="brand">
-<span class="brand-badge">C</span>
-<span>ChipTurbo</span>
-</a>
+<!-- LANDING -->
+<div id="landing">
 
-<nav class="nav-links">
-<a href="#inicio">Início</a>
-<a href="#recursos">Recursos</a>
-<a href="#funciona">Como funciona</a>
-<a href="#planos">Planos</a>
-<a href="#faq">Dúvidas</a>
-<a href="#" class="btn btn-primary">Começar agora</a>
-</nav>
-</div>
+<header class="container">
+<div class="logo">ZapFlow</div>
+<button class="btn btn-primary" onclick="enterApp()">Entrar</button>
 </header>
 
-<main>
-<section class="hero" id="inicio">
-<div class="container hero-grid">
-<div>
-<div class="eyebrow">
-<span class="dot"></span>
-Plataforma focada em maturação de chips
-</div>
+<section class="hero container">
+<h1>Envie campanhas no <span>WhatsApp com IA</span></h1>
+<p>Organize contatos, crie mensagens inteligentes e controle seus envios com um painel moderno.</p>
 
-<h1>
-Faça a <span>maturação dos seus chips</span> com mais organização, escala e praticidade
-</h1>
+<button class="btn btn-primary" onclick="enterApp()">Começar agora</button>
+<button class="btn btn-outline">Ver recursos</button>
+</section>
 
-<p>
-Estruture sua operação de maturação de chips com um painel moderno,
-acompanhamento visual e uma experiência pensada para quem precisa
-ganhar tempo, ter mais controle e profissionalizar o processo.
-</p>
-
-<div class="hero-actions">
-<a href="#planos" class="btn btn-primary">Quero começar</a>
-<a href="#recursos" class="btn btn-outline">Ver recursos</a>
-</div>
-
-<div class="hero-mini">
-<span>✔ Painel intuitivo</span>
-<span>✔ Acompanhamento centralizado</span>
-<span>✔ Operação mais organizada</span>
-</div>
-</div>
-
-<div class="panel">
-<div class="panel-top">
-<div class="panel-title">Painel de maturação</div>
-<div class="status">Ativo</div>
-</div>
-
-<div class="stat-grid">
-<div class="stat">
-<small>Chips em processo</small>
-<strong>128</strong>
-<span>Em acompanhamento</span>
-</div>
-<div class="stat">
-<small>Chips prontos</small>
-<strong>57</strong>
-<span>Liberados</span>
-</div>
-<div class="stat">
-<small>Operações ativas</small>
-<strong>12</strong>
-<span>Rodando hoje</span>
-</div>
-<div class="stat">
-<small>Taxa operacional</small>
-<strong>94%</strong>
-<span>Fluxo estável</span>
-</div>
-</div>
-</div>
+<section class="section container">
+<h2>Recursos</h2>
+<div class="cards">
+<div class="card">📊 Dashboard completo</div>
+<div class="card">🤖 IA para mensagens</div>
+<div class="card">📲 Campanhas com intervalo</div>
+<div class="card">📁 Importação de contatos</div>
 </div>
 </section>
 
-<section id="recursos">
-<div class="container">
-<div class="section-head">
-<h2>Recursos pensados para quem trabalha com maturação de chips</h2>
-<p>
-Uma estrutura visual mais clara para acompanhar processos, organizar etapas
-e dar mais controle à sua operação.
-</p>
 </div>
 
-<div class="cards features">
-<div class="card">
-<div class="icon">📲</div>
-<h3>Gestão de chips</h3>
-<p>Organize seus chips em um ambiente visual, com mais controle e menos bagunça operacional.</p>
+<!-- DASHBOARD -->
+<div id="app" class="dashboard">
+
+<div class="sidebar">
+<h2>ZapFlow</h2>
+
+<button class="btn btn-outline" onclick="showTab('home')">Dashboard</button>
+<button class="btn btn-outline" onclick="showTab('contatos')">Contatos</button>
+<button class="btn btn-outline" onclick="showTab('campanhas')">Campanhas</button>
+<button class="btn btn-outline" onclick="showTab('ia')">IA</button>
+<button class="btn btn-outline" onclick="showTab('config')">WhatsApp</button>
 </div>
 
-<div class="card">
-<div class="icon">📊</div>
-<h3>Painel de acompanhamento</h3>
-<p>Visualize o andamento da sua maturação de forma simples, rápida e profissional.</p>
+<div class="main">
+
+<div class="topbar">
+<h2>Painel</h2>
+<button class="btn btn-primary">Upgrade</button>
 </div>
 
-<div class="card">
-<div class="icon">⚙️</div>
-<h3>Processo centralizado</h3>
-<p>Concentre sua operação em um só lugar e tenha mais clareza sobre cada etapa.</p>
+<!-- DASHBOARD -->
+<div id="home" class="tab">
+<div class="grid">
+<div class="stat">📊 120 Envios</div>
+<div class="stat">📩 45 Respostas</div>
+<div class="stat">🔥 89% Entregue</div>
+</div>
 </div>
 
-<div class="card">
-<div class="icon">🕒</div>
-<h3>Controle de evolução</h3>
-<p>Acompanhe seus chips em diferentes estágios e tenha visão melhor do fluxo.</p>
+<!-- CONTATOS -->
+<div id="contatos" class="tab hidden">
+<h2>Contatos</h2>
+
+<input placeholder="Nome">
+<input placeholder="Telefone">
+
+<button class="btn btn-primary">Adicionar</button>
 </div>
 
-<div class="card">
-<div class="icon">📈</div>
-<h3>Métricas visuais</h3>
-<p>Veja números importantes da operação sem depender de controles soltos e manuais.</p>
+<!-- CAMPANHAS -->
+<div id="campanhas" class="tab hidden">
+<h2>Criar Campanha</h2>
+
+<input placeholder="Nome da campanha">
+<textarea placeholder="Mensagem"></textarea>
+<input placeholder="Intervalo (segundos)">
+
+<button class="btn btn-primary">Enviar Campanha</button>
 </div>
 
-<div class="card">
-<div class="icon">🚀</div>
-<h3>Escala com organização</h3>
-<p>Tenha uma base mais estruturada para crescer e trabalhar de forma mais profissional.</p>
-</div>
-</div>
-</div>
-</section>
+<!-- IA -->
+<div id="ia" class="tab hidden">
+<h2>Gerar Mensagem com IA</h2>
 
-<section id="funciona">
-<div class="container">
-<div class="section-head">
-<h2>Como funciona</h2>
-<p>
-Um fluxo simples para quem quer começar a maturar chips com mais ordem e controle.
-</p>
+<input id="prompt" placeholder="Ex: venda de produto fitness">
+
+<button class="btn btn-primary" onclick="gerarIA()">Gerar</button>
+
+<textarea id="resultado"></textarea>
 </div>
 
-<div class="cards steps">
-<div class="card">
-<div class="step-number">1</div>
-<h3>Cadastre sua operação</h3>
-<p>Entre na plataforma e organize a base que será acompanhada no processo.</p>
+<!-- CONFIG -->
+<div id="config" class="tab hidden">
+<h2>Conectar WhatsApp</h2>
+
+<p>Integração preparada para API oficial</p>
+
+<button class="btn btn-primary">Conectar</button>
 </div>
 
-<div class="card">
-<div class="step-number">2</div>
-<h3>Defina seu fluxo</h3>
-<p>Estruture os chips em processo e acompanhe cada fase com mais clareza.</p>
+</div>
 </div>
 
-<div class="card">
-<div class="step-number">3</div>
-<h3>Monitore o andamento</h3>
-<p>Visualize status, quantidade e evolução em um painel único.</p>
-</div>
+<script>
 
-<div class="card">
-<div class="step-number">4</div>
-<h3>Ganhe escala</h3>
-<p>Profissionalize sua operação e trabalhe com muito mais organização.</p>
-</div>
-</div>
-</div>
-</section>
+function enterApp(){
+  document.getElementById("landing").style.display="none";
+  document.getElementById("app").style.display="block";
+}
 
-<section id="planos">
-<div class="container">
-<div class="section-head">
-<h2>Planos para sua operação de maturação</h2>
-<p>
-Escolha o plano ideal para começar pequeno ou operar com mais volume.
-</p>
-</div>
+function showTab(tab){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.add("hidden"));
+  document.getElementById(tab).classList.remove("hidden");
+}
 
-<div class="cards pricing">
-<div class="card price-card">
-<h3>Inicial</h3>
-<div class="price">R$ 49 <span>/mês</span></div>
-<p style="color:var(--muted);">Para quem está começando a estruturar a operação.</p>
-<ul>
-<li>✓ Painel básico</li>
-<li>✓ Controle inicial</li>
-<li>✓ Acompanhamento simples</li>
-<li>✓ Suporte padrão</li>
-</ul>
-<a href="#" class="btn btn-outline" style="width:100%;">Assinar</a>
-</div>
+function gerarIA(){
+  let prompt = document.getElementById("prompt").value;
 
-<div class="card price-card featured">
-<div class="tag">Mais escolhido</div>
-<h3>Profissional</h3>
-<div class="price">R$ 97 <span>/mês</span></div>
-<p style="color:var(--muted);">Para quem precisa de mais controle e volume operacional.</p>
-<ul>
-<li>✓ Painel completo</li>
-<li>✓ Mais organização da base</li>
-<li>✓ Métricas visuais</li>
-<li>✓ Melhor gestão do fluxo</li>
-<li>✓ Suporte prioritário</li>
-</ul>
-<a href="#" class="btn btn-primary" style="width:100%;">Começar agora</a>
-</div>
+  document.getElementById("resultado").value =
+  "🔥 Oferta imperdível!\n\n" +
+  "Olá! Temos uma condição especial para você sobre " + prompt +
+  ". Aproveite agora e garanta antes que acabe!";
+}
 
-<div class="card price-card">
-<h3>Avançado</h3>
-<div class="price">R$ 197 <span>/mês</span></div>
-<p style="color:var(--muted);">Para operações maiores e mais estruturadas.</p>
-<ul>
-<li>✓ Tudo do plano Profissional</li>
-<li>✓ Mais capacidade operacional</li>
-<li>✓ Estrutura premium</li>
-<li>✓ Atendimento diferenciado</li>
-</ul>
-<a href="#" class="btn btn-outline" style="width:100%;">Escolher plano</a>
-</div>
-</div>
-</div>
-</section>
-
-<section id="faq">
-<div class="container">
-<div class="section-head">
-<h2>Dúvidas frequentes</h2>
-<p>
-Respostas curtas para ajudar seu visitante a entender a proposta do serviço.
-</p>
-</div>
-
-<div class="faq">
-<div class="faq-item">
-<h3>O que é a maturação de chips?</h3>
-<p>É o processo de acompanhamento e preparação de chips ao longo de um fluxo organizado, com foco em estabilidade e melhor estrutura operacional.</p>
-</div>
-
-<div class="faq-item">
-<h3>Preciso ter experiência para usar?</h3>
-<p>Não. A proposta da landing page é justamente mostrar simplicidade, organização e facilidade no acompanhamento.</p>
-</div>
-
-<div class="faq-item">
-<h3>Posso escalar minha operação?</h3>
-<p>Sim. O objetivo do layout é transmitir que sua plataforma atende desde operações menores até estruturas maiores.</p>
-</div>
-
-<div class="faq-item">
-<h3>Posso usar isso como página de vendas?</h3>
-<p>Sim. Esse modelo foi montado com cara de página comercial, com foco em conversão, autoridade e apresentação profissional.</p>
-</div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="container">
-<div class="cta">
-<h2>Profissionalize sua operação de maturação de chips</h2>
-<p>
-Tenha uma página forte, moderna e objetiva para apresentar sua solução,
-transmitir autoridade e facilitar a conversão dos seus clientes.
-</p>
-<a href="#" class="btn btn-primary">Quero meu acesso</a>
-</div>
-</div>
-</section>
-</main>
-
-<footer>
-<div class="container footer-wrap">
-<div>
-<strong>ChipTurbo</strong><br>
-<span>Plataforma para maturação de chips.</span>
-</div>
-
-<div class="footer-links">
-<a href="#inicio">Início</a>
-<a href="#recursos">Recursos</a>
-<a href="#funciona">Como funciona</a>
-<a href="#planos">Planos</a>
-</div>
-</div>
-</footer>
+</script>
 
 </body>
 </html>
