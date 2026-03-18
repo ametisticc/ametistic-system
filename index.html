@@ -3,546 +3,884 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyForce</title>
+  <title>ZapForge - Plataforma de Automação</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+    :root{
+      --bg:#08111f;
+      --bg-soft:#101c31;
+      --card:#12213b;
+      --line:rgba(255,255,255,.08);
+      --text:#f8fafc;
+      --muted:#b8c2d3;
+      --primary:#6d5dfc;
+      --secondary:#00d4ff;
+      --accent:#ff7a00;
+      --success:#15d98b;
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+      --radius:22px;
+      --max:1180px;
     }
 
-    body {
-      background: #0f172a;
-      color: #ffffff;
-      line-height: 1.6;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    html{
+      scroll-behavior:smooth;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #facc15;
-      letter-spacing: 0.5px;
-    }
-
-    .menu {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .menu a {
-      color: #e5e7eb;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .menu a:hover {
-      color: #f97316;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: 0.3s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f97316, #facc15);
-      color: #111827;
-      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
-    }
-
-    .btn-secondary {
-      border: 2px solid #7c3aed;
-      color: #fff;
-      background: transparent;
-    }
-
-    .btn-secondary:hover {
-      background: #7c3aed;
-    }
-
-    .hero {
-      padding: 90px 0 70px;
+    body{
       background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, 0.35), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.28), transparent 25%);
+        radial-gradient(circle at top left, rgba(109,93,252,.20), transparent 25%),
+        radial-gradient(circle at top right, rgba(0,212,255,.16), transparent 22%),
+        radial-gradient(circle at bottom center, rgba(255,122,0,.12), transparent 25%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
     }
 
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
+    a{
+      text-decoration:none;
+      color:inherit;
     }
 
-    .hero h1 {
-      font-size: 3.2rem;
-      line-height: 1.1;
-      margin-bottom: 20px;
+    .container{
+      width:min(92%, var(--max));
+      margin:0 auto;
     }
 
-    .hero h1 span {
-      color: #facc15;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:999;
+      backdrop-filter:blur(14px);
+      background:rgba(8,17,31,.82);
+      border-bottom:1px solid var(--line);
     }
 
-    .hero p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      margin-bottom: 28px;
-      max-width: 600px;
+    .nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      font-size:1.25rem;
+      letter-spacing:.3px;
     }
 
-    .hero-card {
-      background: linear-gradient(160deg, #1e293b, #0f172a);
-      padding: 30px;
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow:0 10px 30px rgba(109,93,252,.35);
+      font-weight:900;
     }
 
-    .mini-card {
-      background: #111827;
-      border-left: 5px solid #2563eb;
-      padding: 16px;
-      margin-bottom: 16px;
-      border-radius: 14px;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
     }
 
-    .mini-card h4 {
-      color: #facc15;
-      margin-bottom: 6px;
+    .nav-links a{
+      color:var(--muted);
+      font-weight:700;
+      transition:.25s;
     }
 
-    section {
-      padding: 70px 0;
+    .nav-links a:hover{
+      color:#fff;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 14px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:16px;
+      font-weight:800;
+      border:none;
+      cursor:pointer;
+      transition:.25s ease;
     }
 
-    .section-subtitle {
-      text-align: center;
-      color: #cbd5e1;
-      max-width: 700px;
-      margin: 0 auto 45px;
+    .btn:hover{
+      transform:translateY(-2px);
     }
 
-    .grid {
-      display: grid;
-      gap: 24px;
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), #ffb000);
+      color:#111827;
+      box-shadow:0 12px 30px rgba(255,122,0,.28);
     }
 
-    .features-grid {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .btn-outline{
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
     }
 
-    .card {
-      background: #111827;
-      padding: 28px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.3s;
+    .hero{
+      padding:76px 0 46px;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.18);
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      gap:38px;
+      align-items:center;
     }
 
-    .card .icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#dce6f4;
+      font-size:.92rem;
+      font-weight:700;
+      margin-bottom:18px;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      color: #facc15;
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--success);
+      box-shadow:0 0 0 6px rgba(21,217,139,.14);
     }
 
-    .steps {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .hero h1{
+      font-size:clamp(2.3rem, 4.6vw, 4.3rem);
+      line-height:1.02;
+      margin-bottom:18px;
+      font-weight:900;
+      letter-spacing:-1.3px;
     }
 
-    .step-number {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      margin-bottom: 16px;
+    .hero h1 span{
+      background:linear-gradient(135deg, #fff, var(--secondary), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
     }
 
-    .pricing {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      align-items: stretch;
+    .hero p{
+      font-size:1.08rem;
+      color:var(--muted);
+      max-width:650px;
+      margin-bottom:28px;
     }
 
-    .price-card {
-      background: #111827;
-      border-radius: 22px;
-      padding: 32px 26px;
-      border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
     }
 
-    .price-card.featured {
-      border: 2px solid #f97316;
-      transform: scale(1.03);
-      box-shadow: 0 18px 50px rgba(249, 115, 22, 0.22);
+    .hero-mini{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      color:#d9e3ef;
+      font-size:.95rem;
+      font-weight:700;
     }
 
-    .badge {
-      position: absolute;
-      top: -12px;
-      right: 18px;
-      background: #f97316;
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 8px 12px;
-      border-radius: 999px;
+    .hero-mini span{
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
-    .price-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #facc15;
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:28px;
+      padding:22px;
+      position:relative;
+      overflow:hidden;
     }
 
-    .price {
-      font-size: 2.3rem;
-      font-weight: 800;
-      margin-bottom: 16px;
+    .panel::after{
+      content:"";
+      position:absolute;
+      inset:auto -60px -70px auto;
+      width:170px;
+      height:170px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,122,0,.35), transparent 60%);
+      filter:blur(10px);
     }
 
-    .price span {
-      font-size: 1rem;
-      color: #cbd5e1;
-      font-weight: 500;
+    .panel-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:18px;
+      gap:16px;
     }
 
-    .price-card ul {
-      list-style: none;
-      margin: 20px 0;
+    .panel-title{
+      font-size:1.04rem;
+      font-weight:800;
     }
 
-    .price-card ul li {
-      margin-bottom: 12px;
-      color: #e5e7eb;
+    .status{
+      font-size:.84rem;
+      color:#ddfff2;
+      background:rgba(21,217,139,.14);
+      border:1px solid rgba(21,217,139,.25);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:800;
     }
 
-    .cta {
-      text-align: center;
-      background: linear-gradient(135deg, #2563eb, #7c3aed, #f97316);
-      border-radius: 28px;
-      padding: 60px 30px;
-      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
+    .stat-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:14px;
+      margin-bottom:14px;
     }
 
-    .cta h2 {
-      font-size: 2.4rem;
-      margin-bottom: 16px;
+    .stat{
+      background:rgba(8,17,31,.65);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:18px;
     }
 
-    .cta p {
-      max-width: 700px;
-      margin: 0 auto 24px;
-      color: #f8fafc;
+    .stat small{
+      display:block;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:6px;
     }
 
-    footer {
-      padding: 30px 0;
-      text-align: center;
-      color: #94a3b8;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      margin-top: 50px;
+    .stat strong{
+      font-size:1.35rem;
+      display:block;
+      margin-bottom:2px;
     }
 
-    @media (max-width: 900px) {
-      .hero-content {
-        grid-template-columns: 1fr;
+    .graph{
+      margin-top:8px;
+      background:rgba(8,17,31,.72);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    .bars{
+      height:160px;
+      display:flex;
+      align-items:flex-end;
+      gap:12px;
+    }
+
+    .bar{
+      flex:1;
+      border-radius:12px 12px 6px 6px;
+      background:linear-gradient(180deg, var(--secondary), var(--primary), var(--accent));
+      opacity:.95;
+    }
+
+    .bar:nth-child(1){height:38%}
+    .bar:nth-child(2){height:60%}
+    .bar:nth-child(3){height:50%}
+    .bar:nth-child(4){height:78%}
+    .bar:nth-child(5){height:88%}
+    .bar:nth-child(6){height:69%}
+    .bar:nth-child(7){height:95%}
+
+    section{
+      padding:44px 0;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:28px;
+    }
+
+    .section-head h2{
+      font-size:clamp(1.8rem, 3vw, 2.8rem);
+      line-height:1.1;
+      margin-bottom:10px;
+    }
+
+    .section-head p{
+      max-width:720px;
+      margin:0 auto;
+      color:var(--muted);
+    }
+
+    .cards{
+      display:grid;
+      gap:18px;
+    }
+
+    .features{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:1.4rem;
+      margin-bottom:16px;
+      background:linear-gradient(135deg, rgba(109,93,252,.22), rgba(0,212,255,.18));
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .card h3{
+      font-size:1.12rem;
+      margin-bottom:8px;
+    }
+
+    .card p{
+      color:var(--muted);
+      font-size:.98rem;
+    }
+
+    .steps{
+      grid-template-columns:repeat(4, 1fr);
+    }
+
+    .step-number{
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:linear-gradient(135deg, var(--primary), var(--secondary));
+      font-weight:900;
+      margin-bottom:14px;
+      box-shadow:0 12px 30px rgba(109,93,252,.24);
+    }
+
+    .pricing{
+      grid-template-columns:repeat(3, 1fr);
+      align-items:stretch;
+    }
+
+    .price-card{
+      position:relative;
+    }
+
+    .price-card.featured{
+      border:2px solid rgba(255,122,0,.55);
+      transform:translateY(-4px);
+    }
+
+    .tag{
+      position:absolute;
+      top:-12px;
+      right:18px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:linear-gradient(135deg, var(--accent), #ffb000);
+      color:#1b1b1b;
+      font-size:.82rem;
+      font-weight:900;
+    }
+
+    .price{
+      font-size:2.3rem;
+      font-weight:900;
+      line-height:1;
+      margin:14px 0 12px;
+    }
+
+    .price span{
+      font-size:1rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .price-card ul{
+      list-style:none;
+      margin:18px 0 22px;
+    }
+
+    .price-card li{
+      margin:10px 0;
+      color:#e6edf8;
+    }
+
+    .highlight{
+      margin-top:10px;
+      background:linear-gradient(135deg, rgba(109,93,252,.14), rgba(0,212,255,.10));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:34px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+      box-shadow:var(--shadow);
+    }
+
+    .list{
+      display:grid;
+      gap:12px;
+    }
+
+    .list-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:#eaf1fb;
+    }
+
+    .list-item b{
+      color:#fff;
+    }
+
+    .check{
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:rgba(21,217,139,.14);
+      border:1px solid rgba(21,217,139,.24);
+      color:#a9ffe1;
+      flex-shrink:0;
+      font-weight:900;
+    }
+
+    .cta{
+      text-align:center;
+      padding:54px 22px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at top left, rgba(109,93,252,.28), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,122,0,.22), transparent 25%),
+        linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      box-shadow:var(--shadow);
+    }
+
+    .cta h2{
+      font-size:clamp(1.9rem, 3vw, 3rem);
+      margin-bottom:10px;
+    }
+
+    .cta p{
+      max-width:760px;
+      margin:0 auto 22px;
+      color:var(--muted);
+    }
+
+    footer{
+      padding:28px 0 40px;
+      color:#93a2bb;
+    }
+
+    .footer-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:24px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+    }
+
+    @media (max-width: 1020px){
+      .hero-grid,
+      .highlight,
+      .features,
+      .steps,
+      .pricing{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        flex-direction:column;
+        padding:14px 0;
       }
 
-      .hero h1 {
-        font-size: 2.4rem;
+      .nav-links{
+        justify-content:center;
       }
 
-      .menu {
-        gap: 14px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero {
-        padding-top: 60px;
+      .hero{
+        padding-top:42px;
       }
 
-      .hero h1 {
-        font-size: 2rem;
+      .hero-grid,
+      .highlight,
+      .features,
+      .steps,
+      .pricing,
+      .stat-grid{
+        grid-template-columns:1fr;
       }
 
-      .section-title {
-        font-size: 1.8rem;
+      .hero-actions .btn{
+        width:100%;
       }
 
-      .btn {
-        width: 100%;
-        text-align: center;
+      .hero-mini{
+        flex-direction:column;
+        gap:10px;
       }
 
-      .hero-buttons {
-        flex-direction: column;
+      .panel{
+        padding:18px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <header class="topbar">
     <div class="container nav">
-      <div class="logo">StudyForce</div>
-      <nav class="menu">
+      <a href="#inicio" class="brand">
+        <span class="brand-badge">Z</span>
+        <span>ZapForge</span>
+      </a>
+
+      <nav class="nav-links">
         <a href="#inicio">Início</a>
         <a href="#recursos">Recursos</a>
-        <a href="#funciona">Como Funciona</a>
+        <a href="#funciona">Como funciona</a>
         <a href="#planos">Planos</a>
-        <a href="#contato">Contato</a>
-        <a href="#" class="btn btn-primary">Começar Agora</a>
+        <a href="#afiliados">Afiliados</a>
+        <a href="#" class="btn btn-primary">Começar agora</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero" id="inicio">
-    <div class="container hero-content">
-      <div>
-        <h1>Organize seus estudos com <span>mais foco, estratégia e resultado</span></h1>
-        <p>
-          Uma plataforma moderna para quem quer acompanhar metas, visualizar desempenho
-          e manter uma rotina de estudos forte, prática e eficiente.
-        </p>
-        <div class="hero-buttons">
-          <a href="#" class="btn btn-primary">Teste Agora</a>
-          <a href="#recursos" class="btn btn-secondary">Ver Recursos</a>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Plataforma digital para gestão e automação
+          </div>
+
+          <h1>
+            Acelere seus processos com uma
+            <span>plataforma visual, rápida e profissional</span>
+          </h1>
+
+          <p>
+            Organize contas, acompanhe desempenho, visualize status em tempo real
+            e tenha uma experiência moderna para escalar sua operação com mais
+            praticidade e controle.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#planos" class="btn btn-primary">Ver planos</a>
+            <a href="#recursos" class="btn btn-outline">Explorar recursos</a>
+          </div>
+
+          <div class="hero-mini">
+            <span>✔ Painel intuitivo</span>
+            <span>✔ Gestão simplificada</span>
+            <span>✔ Visual premium</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-top">
+            <div class="panel-title">Dashboard operacional</div>
+            <div class="status">Online</div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <small>Instâncias ativas</small>
+              <strong>128</strong>
+              <span>Operando normalmente</span>
+            </div>
+            <div class="stat">
+              <small>Contas em análise</small>
+              <strong>42</strong>
+              <span>Monitoramento em andamento</span>
+            </div>
+            <div class="stat">
+              <small>Taxa de atividade</small>
+              <strong>94%</strong>
+              <span>Acima da média</span>
+            </div>
+            <div class="stat">
+              <small>Fila processada</small>
+              <strong>2.4k</strong>
+              <span>Últimas 24h</span>
+            </div>
+          </div>
+
+          <div class="graph">
+            <small style="display:block;color:var(--muted);font-weight:700;margin-bottom:14px;">Evolução semanal</small>
+            <div class="bars">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="hero-card">
-        <div class="mini-card">
-          <h4>Painel Inteligente</h4>
-          <p>Veja sua evolução em tempo real com gráficos simples e objetivos.</p>
-        </div>
-        <div class="mini-card">
-          <h4>Metas Diárias</h4>
-          <p>Defina metas claras e acompanhe seu progresso sem complicação.</p>
-        </div>
-        <div class="mini-card">
-          <h4>Planejamento Estratégico</h4>
-          <p>Monte sua rotina por matéria, prioridade e tempo disponível.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="recursos">
-    <div class="container">
-      <h2 class="section-title">Recursos que impulsionam sua performance</h2>
-      <p class="section-subtitle">
-        Tudo o que você precisa para estudar melhor, manter constância e enxergar
-        sua evolução com clareza.
-      </p>
-
-      <div class="grid features-grid">
-        <div class="card">
-          <div class="icon">📊</div>
-          <h3>Painel de desempenho</h3>
-          <p>Acompanhe sua produtividade e visualize seus avanços com facilidade.</p>
+    <section id="recursos">
+      <div class="container">
+        <div class="section-head">
+          <h2>Recursos criados para dar mais controle à sua operação</h2>
+          <p>
+            Uma interface forte, moderna e organizada para você acompanhar tudo
+            com clareza, velocidade e presença profissional.
+          </p>
         </div>
 
-        <div class="card">
-          <div class="icon">🗓️</div>
-          <h3>Cronograma inteligente</h3>
-          <p>Organize seu tempo de forma prática e encaixe seus estudos na rotina.</p>
-        </div>
+        <div class="cards features">
+          <div class="card">
+            <div class="icon">📊</div>
+            <h3>Painel completo</h3>
+            <p>Visualize status, volume, desempenho e movimentações em um ambiente limpo e objetivo.</p>
+          </div>
 
-        <div class="card">
-          <div class="icon">🎯</div>
-          <h3>Metas personalizadas</h3>
-          <p>Crie objetivos diários, semanais e mensais para manter o foco.</p>
-        </div>
+          <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>Automação centralizada</h3>
+            <p>Concentre tarefas e rotinas em uma única plataforma para otimizar seu fluxo de trabalho.</p>
+          </div>
 
-        <div class="card">
-          <div class="icon">📚</div>
-          <h3>Organização por matérias</h3>
-          <p>Separe conteúdos e prioridades para ter mais controle do estudo.</p>
-        </div>
+          <div class="card">
+            <div class="icon">🔐</div>
+            <h3>Acesso organizado</h3>
+            <p>Tenha uma estrutura mais profissional para uso interno, operação e acompanhamento diário.</p>
+          </div>
 
-        <div class="card">
-          <div class="icon">📈</div>
-          <h3>Relatórios visuais</h3>
-          <p>Entenda o que está funcionando e ajuste sua estratégia rapidamente.</p>
-        </div>
+          <div class="card">
+            <div class="icon">📱</div>
+            <h3>Multioperações</h3>
+            <p>Gerencie várias frentes simultaneamente com visão clara e layout pensado para produtividade.</p>
+          </div>
 
-        <div class="card">
-          <div class="icon">🔒</div>
-          <h3>Área exclusiva</h3>
-          <p>Ambiente moderno, seguro e pensado para facilitar sua evolução.</p>
+          <div class="card">
+            <div class="icon">📈</div>
+            <h3>Métricas visuais</h3>
+            <p>Gráficos, blocos de status e indicadores que ajudam a enxergar evolução e gargalos rapidamente.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Escala com mais ordem</h3>
+            <p>Estruture seu crescimento com mais padronização, menos improviso e melhor experiência visual.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="funciona">
-    <div class="container">
-      <h2 class="section-title">Como funciona</h2>
-      <p class="section-subtitle">
-        Em poucos passos, você começa a estudar com mais direção, disciplina e clareza.
-      </p>
-
-      <div class="grid steps">
-        <div class="card">
-          <div class="step-number">1</div>
-          <h3>Crie sua conta</h3>
-          <p>Entre na plataforma e configure seu perfil de estudos em poucos minutos.</p>
+    <section id="funciona">
+      <div class="container">
+        <div class="section-head">
+          <h2>Como funciona</h2>
+          <p>
+            Uma jornada simples para começar rápido e operar com muito mais clareza.
+          </p>
         </div>
 
-        <div class="card">
-          <div class="step-number">2</div>
-          <h3>Organize sua rotina</h3>
-          <p>Monte seu plano com matérias, horários, metas e prioridades.</p>
+        <div class="cards steps">
+          <div class="card">
+            <div class="step-number">1</div>
+            <h3>Crie seu acesso</h3>
+            <p>Cadastre-se e entre em um ambiente moderno, direto e pronto para uso.</p>
+          </div>
+
+          <div class="card">
+            <div class="step-number">2</div>
+            <h3>Configure sua estrutura</h3>
+            <p>Organize o que precisa acompanhar e ajuste o painel ao seu fluxo operacional.</p>
+          </div>
+
+          <div class="card">
+            <div class="step-number">3</div>
+            <h3>Acompanhe em tempo real</h3>
+            <p>Monitore indicadores, atividade e andamento da operação em um só lugar.</p>
+          </div>
+
+          <div class="card">
+            <div class="step-number">4</div>
+            <h3>Escalone com segurança</h3>
+            <p>Tenha mais visibilidade para crescer com consistência e menos desorganização.</p>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="step-number">3</div>
-          <h3>Acompanhe sua evolução</h3>
-          <p>Veja o que você concluiu e onde precisa melhorar.</p>
-        </div>
+        <div class="highlight" id="afiliados" style="margin-top:28px;">
+          <div>
+            <div class="section-head" style="text-align:left;margin-bottom:18px;">
+              <h2 style="margin-bottom:8px;">Programa de afiliados</h2>
+              <p style="margin:0;">
+                Uma área pensada para quem quer indicar a plataforma e gerar renda
+                com uma apresentação mais forte e profissional.
+              </p>
+            </div>
 
-        <div class="card">
-          <div class="step-number">4</div>
-          <h3>Alcance mais resultados</h3>
-          <p>Estude com consistência e tome decisões com base no seu progresso.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div class="list">
+              <div class="list-item">
+                <div class="check">✓</div>
+                <div><b>Comissão por indicação</b><br><span style="color:var(--muted);">Estruture sua divulgação com uma página forte e comercial.</span></div>
+              </div>
+              <div class="list-item">
+                <div class="check">✓</div>
+                <div><b>Materiais de apoio</b><br><span style="color:var(--muted);">Use textos, argumentos e layout visual mais persuasivo.</span></div>
+              </div>
+              <div class="list-item">
+                <div class="check">✓</div>
+                <div><b>Acompanhamento claro</b><br><span style="color:var(--muted);">Tenha visão melhor das oportunidades e crescimento.</span></div>
+              </div>
+            </div>
+          </div>
 
-  <section id="planos">
-    <div class="container">
-      <h2 class="section-title">Escolha seu plano</h2>
-      <p class="section-subtitle">
-        Planos pensados para quem quer começar, evoluir e ter uma experiência mais completa.
-      </p>
-
-      <div class="grid pricing">
-        <div class="price-card">
-          <h3>Básico</h3>
-          <div class="price">R$ 19<span>/mês</span></div>
-          <p>Ideal para começar com organização.</p>
-          <ul>
-            <li>✓ Painel básico</li>
-            <li>✓ Metas semanais</li>
-            <li>✓ Organização por matérias</li>
-            <li>✓ Suporte padrão</li>
-          </ul>
-          <a href="#" class="btn btn-secondary">Assinar</a>
-        </div>
-
-        <div class="price-card featured">
-          <div class="badge">Mais escolhido</div>
-          <h3>Pro</h3>
-          <div class="price">R$ 39<span>/mês</span></div>
-          <p>Para quem quer mais controle e performance.</p>
-          <ul>
-            <li>✓ Painel completo</li>
-            <li>✓ Relatórios visuais</li>
-            <li>✓ Metas personalizadas</li>
-            <li>✓ Cronograma inteligente</li>
-            <li>✓ Suporte prioritário</li>
-          </ul>
-          <a href="#" class="btn btn-primary">Assinar Agora</a>
-        </div>
-
-        <div class="price-card">
-          <h3>Premium</h3>
-          <div class="price">R$ 69<span>/mês</span></div>
-          <p>Para quem busca uma experiência mais avançada.</p>
-          <ul>
-            <li>✓ Tudo do plano Pro</li>
-            <li>✓ Recursos exclusivos</li>
-            <li>✓ Área avançada de análise</li>
-            <li>✓ Atendimento diferenciado</li>
-          </ul>
-          <a href="#" class="btn btn-secondary">Quero esse</a>
+          <div class="card" style="background:rgba(8,17,31,.55);">
+            <div class="icon">💸</div>
+            <h3>Indique e monetize</h3>
+            <p>
+              Transforme sua divulgação em uma estrutura mais profissional,
+              com apresentação forte, linguagem comercial e foco em conversão.
+            </p>
+            <div style="margin-top:18px;">
+              <a href="#planos" class="btn btn-primary">Quero participar</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="container">
-      <div class="cta" id="contato">
-        <h2>Chegou a hora de estudar com mais força e direção</h2>
-        <p>
-          Comece hoje a transformar sua rotina com uma plataforma visual, prática
-          e feita para impulsionar seus resultados.
-        </p>
-        <a href="#" class="btn btn-primary">Quero Começar Agora</a>
+    <section id="planos">
+      <div class="container">
+        <div class="section-head">
+          <h2>Planos para diferentes níveis de operação</h2>
+          <p>
+            Escolha a estrutura ideal para começar, crescer e profissionalizar sua presença.
+          </p>
+        </div>
+
+        <div class="cards pricing">
+          <div class="card price-card">
+            <h3>Start</h3>
+            <div class="price">R$ 49 <span>/mês</span></div>
+            <p style="color:var(--muted);">Para quem quer iniciar de forma simples e organizada.</p>
+            <ul>
+              <li>✓ Painel básico</li>
+              <li>✓ Gestão inicial</li>
+              <li>✓ Área de acompanhamento</li>
+              <li>✓ Suporte padrão</li>
+            </ul>
+            <a href="#" class="btn btn-outline" style="width:100%;">Assinar</a>
+          </div>
+
+          <div class="card price-card featured">
+            <div class="tag">Mais escolhido</div>
+            <h3>Pro</h3>
+            <div class="price">R$ 97 <span>/mês</span></div>
+            <p style="color:var(--muted);">Mais recursos para quem precisa de desempenho e escala.</p>
+            <ul>
+              <li>✓ Painel avançado</li>
+              <li>✓ Mais controle operacional</li>
+              <li>✓ Visão ampliada de métricas</li>
+              <li>✓ Estrutura mais profissional</li>
+              <li>✓ Suporte prioritário</li>
+            </ul>
+            <a href="#" class="btn btn-primary" style="width:100%;">Começar agora</a>
+          </div>
+
+          <div class="card price-card">
+            <h3>Elite</h3>
+            <div class="price">R$ 197 <span>/mês</span></div>
+            <p style="color:var(--muted);">Para operações maiores e presença premium.</p>
+            <ul>
+              <li>✓ Tudo do plano Pro</li>
+              <li>✓ Mais flexibilidade</li>
+              <li>✓ Área premium</li>
+              <li>✓ Prioridade máxima</li>
+            </ul>
+            <a href="#" class="btn btn-outline" style="width:100%;">Escolher plano</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <h2>Deixe sua apresentação mais forte e sua operação mais organizada</h2>
+          <p>
+            Use uma landing page moderna, vibrante e profissional para transmitir
+            autoridade, facilitar entendimento e aumentar o impacto visual da sua marca.
+          </p>
+          <a href="#" class="btn btn-primary">Quero meu acesso</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <div class="container">
-      © 2026 StudyForce — Todos os direitos reservados.
+    <div class="container footer-wrap">
+      <div>
+        <strong>ZapForge</strong><br>
+        <span>Plataforma digital de automação e gestão.</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#inicio">Início</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#funciona">Como funciona</a>
+        <a href="#planos">Planos</a>
+      </div>
     </div>
   </footer>
 
